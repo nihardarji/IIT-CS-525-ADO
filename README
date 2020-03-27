@@ -1,0 +1,58 @@
+                                                 Assignment 1 -  Storage Manager
+                                                
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+GROUP MEMBERS
+
+1. Maharsh Hetal Gheewala  (A20442506)
+2. Nihar Darji (A20459275) 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Goal : Implement Storage Manager -  A module that is equipped for perusing obstructs from a record on circle into memory and composing hinders from memory to a document on plate.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+Code Structure:
+---------------
+Interface : 
+-----------
+It is executed in header record storage_mgr.h . The strategies in the interface utilize the two information structures to store data about records and pages - File Handle SM_FileHandle and Page Handle SM_PageHandle. 
+
+It likewise incorporates the capacity revelation to control page documents, peruse and compose squares onto the circle.
+
+File Related Methods:
+--------------------
+initStorageManager() : It initializes the storage manager.
+
+createPageFile() :This capacity is utilized to make a document fileName. At first the record size is one page. On the off chance that the record can't be created RC_FILE_NOT_FOUND is returned and if the document is made successfully RC_OK is returned.
+
+openPageFile() : This capacity is utilized for opening a current page document. In the event that the document isn't found or on the off chance that it doesn't exist RC_FILE_NOT_FOUND is returned else it returns RC_OK. In the event that the record is effectively opened, at that point the data about the opened document is introduced to the fields of record handle.
+
+closePageFile() : This capacity is utilized to close an opened page record. It returns RC_OK when the page document is effectively shut.
+
+destroyPageFile() : This capacity is utilized to erase the page record. It returns RC_OK on fruitful cancellation of the page document.
+
+Read Methods:
+-------------
+
+readBlock() : This capacity peruses the pageNum th hinder from a document into memory pointed by the memPage page handle. First we check for the legitimacy of the page number, the page number must be not exactly the all out number of pages. In the event that it has less number of pages then RC_READ_NON_EXISTING_PAGE is returned.
+
+getBlockPos() : This capacity restores the present page position in a record pointed by the fileHandle.
+
+readPreviousBlock() : This capacity is utilized to peruse a page from the pervious square comparative with the current block. RC_READ_NON_EXISTING_PAGE is returned when the client attempts to peruse a page from the past square when the present square is the primary square.
+
+readCurrentBlock() : This capacity is utilized to peruse a page from the present square.
+
+readNextBlock(): This capacity is utilized to peruse a page from the following square comparative with the current block. RC_READ_NON_EXISTING_PAGE is returned when the client attempts to peruse a page from the following square when the present square is the last square.
+
+readLastBlock() : This capacity is utilized to peruse a page from the last square.
+
+Write Methods:
+--------------
+writeBlock() : This capacity is utilized to compose content from disk(memory) to a page document.
+
+writeCurrentBlock() : This capacity is utilized to compose substance to a page from the present square.
+
+appendEmptyBlock() : This capacity is utilized to build number of pages by one by attaching an unfilled page toward the end.
+
+ensureCapacity() : This capacity is utilized when document has not exactly numberOfPages pages to expand size to numberOfPages.
+
+Return Codes and Test Cases : The header file dberror.h defines mistake codes and constants as macros. Experiments are written in test_assign1_1.c.
